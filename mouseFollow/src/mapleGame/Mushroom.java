@@ -9,12 +9,15 @@ import javax.swing.ImageIcon;
  */
 public class Mushroom extends Enemy {
 
+	private Player player;
+
 	public Mushroom() {
 	}
 
-	public Mushroom(String string, int x, int y, int hp, String name) {
-		enemyMove = new ImageIcon(string);
+	public Mushroom(String string, int x, int y, int hp, String name, Player player) {
+		this.player = player;
 
+		enemyMove = new ImageIcon(string);
 		this.x = x;
 		this.y = y;
 		this.width = enemyMove.getIconWidth();
@@ -58,39 +61,59 @@ public class Mushroom extends Enemy {
 			@Override
 			public void run() {
 				while (true) {
-
-					if (moveState == 1) {
-						setIcon(new ImageIcon("image/주황버섯오른쪽.gif"));
-						x++;
-						if (x >= 1100) {
-							moveState = 2;
+					int characterX = player.x;
+					int characterY = player.y;
+					int distance = Math.abs(characterX - x);
+					System.out.println(distance);
+					if (distance <= 500 && characterY > 460) {
+						if (characterX > x) {
+							setIcon(new ImageIcon("image/주황버섯오른쪽.gif"));
+							x++;
+						} else if (characterX < x) {
+							setIcon(new ImageIcon("image/주황버섯왼쪽.gif"));
+							x--;
 						}
-						setLocation(x, y); // 내부에 repaint() 존재
-						try {
-							Thread.sleep(speed);
-
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					} else if (moveState == 2) {
-						setIcon(new ImageIcon("image/주황버섯왼쪽.gif"));
-						x--;
-						if (x <= 05) {
-							moveState = 1;
-						}
-						setLocation(x, y); // 내부에 repaint() 존재
-						try {
-							Thread.sleep(speed);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-
-					} else if (moveState == 0) {
 						setLocation(x, y);
 						try {
 							Thread.sleep(speed);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
+						}
+					} else {
+
+						if (moveState == 1) {
+							setIcon(new ImageIcon("image/주황버섯오른쪽.gif"));
+							x++;
+							if (x >= 900) {
+								moveState = 2;
+							}
+							setLocation(x, y); // ³»ºÎ¿¡ repaint() Á¸Àç
+							try {
+								Thread.sleep(speed);
+
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						} else if (moveState == 2) {
+							setIcon(new ImageIcon("image/주황버섯왼쪽.gif"));
+							x--;
+							if (x <= 100) {
+								moveState = 1;
+							}
+							setLocation(x, y); // ³»ºÎ¿¡ repaint() Á¸Àç
+							try {
+								Thread.sleep(speed);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+
+						} else if (moveState == 0) {
+							setLocation(x, y);
+							try {
+								Thread.sleep(speed);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 						}
 					}
 				}

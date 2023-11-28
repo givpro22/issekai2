@@ -11,10 +11,6 @@ import javax.swing.JLabel;
  */
 public class Player extends JLabel {
 
-	public int getPlayerX() {
-		return this.x;
-	}
-
 	private boolean isBossStage = false;
 
 	public void setBossStage(boolean isBossStage) {
@@ -75,11 +71,7 @@ public class Player extends JLabel {
 		setSize(80, 110);
 		setLocation(x, y);
 	}
-	/**
-	 * 플레이어의 HP를 시간에 따라 증가시킵니다.
-	 *
-	 * @author 성세현
-	 */
+
 	public void healing() {
 		new Thread(new Runnable() {
 

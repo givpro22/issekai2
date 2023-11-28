@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
  */
 public class Block extends Enemy {
 
+	private Player player;
+
 	/**
 	 * 기본 생성자. Block 객체를 초기화합니다.
 	 */
@@ -24,7 +26,8 @@ public class Block extends Enemy {
 	 * @param hp     적의 체력을 설정합니다.
 	 * @param name   적의 이름을 설정합니다.
 	 */
-	public Block(String string, int x, int y, int hp, String name) {
+	public Block(String string, int x, int y, int hp, String name, Player player) {
+		this.player = player;
 		enemyMove = new ImageIcon(string);
 
 		this.x = x;
@@ -76,39 +79,59 @@ public class Block extends Enemy {
 			@Override
 			public void run() {
 				while (true) {
-
-					if (moveState == 1) {
-						setIcon(new ImageIcon("image/블록골렘오른쪽.gif"));
-						x++;
-						if (x >= 500) {
-							moveState = 2;
+					int characterX = player.x;
+					int characterY = player.y;
+					int distance = Math.abs(characterX - x);
+					System.out.println(distance);
+					if (distance <= 500 && characterY > 100) {
+						if (characterX > x) {
+							setIcon(new ImageIcon("image/블록골렘오른쪽.gif"));
+							x++;
+						} else if (characterX < x) {
+							setIcon(new ImageIcon("image/블록골렘왼쪽.gif"));
+							x--;
 						}
-						setLocation(x, y); // 내부에 repaint() 존재
-						try {
-							Thread.sleep(speed);
-
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					} else if (moveState == 2) {
-						setIcon(new ImageIcon("image/블록골렘왼쪽.gif"));
-						x--;
-						if (x <= 100) {
-							moveState = 1;
-						}
-						setLocation(x, y); // 내부에 repaint() 존재
-						try {
-							Thread.sleep(speed);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-
-					} else if (moveState == 0) {
 						setLocation(x, y);
 						try {
 							Thread.sleep(speed);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
+						}
+					} else {
+
+						if (moveState == 1) {
+							setIcon(new ImageIcon("image/블록골렘오른쪽.gif"));
+							x++;
+							if (x >= 900) {
+								moveState = 2;
+							}
+							setLocation(x, y);
+							try {
+								Thread.sleep(speed);
+
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						} else if (moveState == 2) {
+							setIcon(new ImageIcon("image/블록골렘왼쪽.gif"));
+							x--;
+							if (x <= 100) {
+								moveState = 1;
+							}
+							setLocation(x, y);
+							try {
+								Thread.sleep(speed);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+
+						} else if (moveState == 0) {
+							setLocation(x, y);
+							try {
+								Thread.sleep(speed);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 						}
 					}
 				}

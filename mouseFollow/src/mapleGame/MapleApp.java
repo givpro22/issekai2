@@ -62,7 +62,6 @@ public class MapleApp extends JFrame implements Initable {
 	Container c;
 
 	Skill skillShot;
-	Skill skillShot2;
 
 	// HP 라벨
 	ImageIcon icHp0, icHp10, icHp20, icHp30, icHp40, icHp50, icHp60, icHp70, icHp80, icHp90, icHp100;
@@ -119,10 +118,10 @@ public class MapleApp extends JFrame implements Initable {
 
 		player = new Player();
 
-		mushroom = new Mushroom("image/주황버섯오른쪽.gif", 555, 380, 30, "주황버섯");
-		stone = new Stone("image/Stone.gif", 100, 150, 30, "스톤골렘");
-		barlog = new Barlog("image/발록오른쪽.gif", 200, -20, 30, "주니어발록");
-		block = new Block("image/블록골렘오른쪽.gif", 200, 300, 30, "블록골렘");
+		mushroom = new Mushroom("image/주황버섯오른쪽.gif", 555, 380, 30, "주황버섯", player);
+		stone = new Stone("image/Stone.gif", 100, 150, 30, "스톤골렘", player);
+		barlog = new Barlog("image/발록오른쪽.gif", 200, -20, 30, "주니어발록", player);
+		block = new Block("image/블록골렘오른쪽.gif", 200, 300, 30, "블록골렘", player);
 		boss = new Boss("image/자쿰.gif", 400, 20, 800, "자쿰");
 
 		bar = new PlayerHpBar();
@@ -213,14 +212,8 @@ public class MapleApp extends JFrame implements Initable {
 					}
 				} else if (player.mp >= 10) {
 					if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
-						skillShot = new Skill(player, enemy, 1);
+						skillShot = new Skill(player, enemy);
 						add(skillShot);
-						player.skilshot();
-						System.out.println("MP : " + player.mp + " 남았습니다.");
-					}
-					else if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
-						skillShot2 = new Skill(player, enemy, 2);
-						add(skillShot2);
 						player.skilshot();
 						System.out.println("MP : " + player.mp + " 남았습니다.");
 					} else if (e.getKeyCode() == KeyEvent.VK_UP) {
@@ -327,11 +320,8 @@ public class MapleApp extends JFrame implements Initable {
 		;
 
 	}
-	/**
-	 * 보스 스테이지 진입과 , 플레이어가 공격을 하거나 공격 당했을 때를 정의합니다..
-	 *
-	 * @author 성세현
-	 */
+
+	// 충돌 클래스
 	class col extends Thread {
 		ArrayList<Enemy> enemy;
 
@@ -494,11 +484,7 @@ public class MapleApp extends JFrame implements Initable {
 
 		}
 	}
-	/**
-	 * 플레이어와 적이 충돌하였는지 판단합니다.
-	 *
-	 * @author 성세현
-	 */
+
 	// 충돌 함수
 	public boolean crash(int playerX, int playerY, int enemyX, int enemyY, int playerW, int playerH, int enemyW,
 			int enemyH) {
@@ -514,11 +500,7 @@ public class MapleApp extends JFrame implements Initable {
 	// end 충돌
 
 	// 몬스터 공격 함수
-	/**
-	 * 플레이어의 공격이 적에게 적중했는지 판단합니다.
-	 *
-	 * @author 성세현
-	 */
+
 	public boolean attackCrash(int playerX, int playerY, int enemyX, int enemyY, int playerW, int playerH, int enemyW,
 			int enemyH) {
 		boolean check = false;
@@ -530,11 +512,7 @@ public class MapleApp extends JFrame implements Initable {
 		}
 		return check;
 	} // 몬스터 공격 함수 END
-	/**
-	 * 플레이어가 적을 처치했을 때를 정의합니다.
-	 *
-	 * @author 성세현
-	 */
+
 	public static int[] score(String enemy) {
 
 		if (enemy == "주황버섯") { // 버섯 50점

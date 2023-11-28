@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
  * @author 박영서
  */
 public class Stone extends Enemy {
+	private Player player;
 
 	/**
 	 * 기본 생성자. Stone 객체를 초기화합니다.
@@ -23,8 +24,10 @@ public class Stone extends Enemy {
 	 * @param y      적의 Y좌표를 설정합니다.
 	 * @param hp     적의 체력을 설정합니다.
 	 * @param name   적의 이름을 설정합니다.
+	 * @param player
 	 */
-	public Stone(String string, int x, int y, int hp, String name) {
+	public Stone(String string, int x, int y, int hp, String name, Player player) {
+		this.player = player;
 		enemyMove = new ImageIcon(string);
 
 		this.x = x;
@@ -76,39 +79,59 @@ public class Stone extends Enemy {
 			@Override
 			public void run() {
 				while (true) {
-
-					if (moveState == 1) {
-						setIcon(new ImageIcon("image/Stone.gif"));
-						x++;
-						if (x >= 900) {
-							moveState = 2;
+					int characterX = player.x;
+					int characterY = player.y;
+					int distance = Math.abs(characterX - x);
+					System.out.println(distance);
+					if (distance <= 500 && characterY > 100) {
+						if (characterX > x) {
+							setIcon(new ImageIcon("image/Stone.gif"));
+							x++;
+						} else if (characterX < x) {
+							setIcon(new ImageIcon("image/StoneL.gif"));
+							x--;
 						}
-						setLocation(x, y); // ³»ºÎ¿¡ repaint() Á¸Àç
-						try {
-							Thread.sleep(speed);
-
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					} else if (moveState == 2) {
-						setIcon(new ImageIcon("image/StoneL.gif"));
-						x--;
-						if (x <= 100) {
-							moveState = 1;
-						}
-						setLocation(x, y); // ³»ºÎ¿¡ repaint() Á¸Àç
-						try {
-							Thread.sleep(speed);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-
-					} else if (moveState == 0) {
 						setLocation(x, y);
 						try {
 							Thread.sleep(speed);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
+						}
+					} else {
+
+						if (moveState == 1) {
+							setIcon(new ImageIcon("image/Stone.gif"));
+							x++;
+							if (x >= 900) {
+								moveState = 2;
+							}
+							setLocation(x, y); // ³»ºÎ¿¡ repaint() Á¸Àç
+							try {
+								Thread.sleep(speed);
+
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						} else if (moveState == 2) {
+							setIcon(new ImageIcon("image/StoneL.gif"));
+							x--;
+							if (x <= 100) {
+								moveState = 1;
+							}
+							setLocation(x, y); // ³»ºÎ¿¡ repaint() Á¸Àç
+							try {
+								Thread.sleep(speed);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+
+						} else if (moveState == 0) {
+							setLocation(x, y);
+							try {
+								Thread.sleep(speed);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 						}
 					}
 				}
