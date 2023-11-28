@@ -24,27 +24,42 @@ public class Skill extends JLabel {
 
 	boolean isSkill = true;
 
-	public Skill(Player player, ArrayList<Enemy> enemy) {
+	int skillType;
+
+	public Skill(Player player, ArrayList<Enemy> enemy){
+		this(player,enemy, 1);
+	}
+
+	public Skill(Player player, ArrayList<Enemy> enemy, int skillType) {
 		this.enemy = enemy;
 		this.x = player.x;
 		this.y = player.y;
 		this.player = player;
-		skillIcon = new ImageIcon("image/스킬샷.png");
-		skillIconLeft = new ImageIcon("image/스킬샷왼쪽.png");
-		skillEffect = new ImageIcon("image/스킬맞출때2.gif");
-		gamePoint = new GamePoint();
+		this.skillType = skillType;
 
-		setSize(400, 110);
-		setLocation(x, y);
-
+		if(skillType == 1){
+			skillIcon = new ImageIcon("image/스킬샷.png");
+			skillIconLeft = new ImageIcon("image/스킬샷왼쪽.png");
+			skillEffect = new ImageIcon("image/스킬맞출때2.gif");
+			gamePoint = new GamePoint();
+			setSize(400, 110);
+			setLocation(x, y);
+		} else if(skillType == 2) {
+			skillIcon = new ImageIcon("image/스킬샷2오른쪽.png");
+			skillIconLeft = new ImageIcon("image/스킬샷2왼쪽.png");
+			skillEffect = new ImageIcon("image/스킬샷2맞출때.png");
+			gamePoint = new GamePoint();
+			setSize(300, 300);
+			y = y-100;
+			setLocation(x, y);
+		}
 		if (player.seewhere == true) {
 			skill();
 		} else if (player.seewhere == false) {
 			skillLeft();
 		}
-
 	}
-
+	
 	// Skill 객체 생성시 자동 실행
 
 	/**
@@ -59,7 +74,13 @@ public class Skill extends JLabel {
 				while (isSkill) {
 					setIcon(skillIcon);
 					Col(enemy);
-					x++;
+					
+					if(skillType == 1) {
+						x = x+2;
+					}
+					else if(skillType == 2) {
+						x++;
+					}
 					setLocation(x, y); // 내부에 repaint() 존재
 					try {
 						Thread.sleep(1);
@@ -99,7 +120,11 @@ public class Skill extends JLabel {
 			}
 		}).start();
 	}
-
+	/**
+	 * 플레이어의 공격이 몬스터에게 적중했을 때 스킬과 몬스터의 변화를 정의하는 메소드 입니다.
+	 *
+	 * @author 성세현
+	 */
 	public void Col(ArrayList<Enemy> enemy) {
 		for (int i = 0; i < enemy.size(); i++) {
 			if (crash(this.x, this.y, enemy.get(i).x, enemy.get(i).y, this.width, this.height, enemy.get(i).width,
@@ -175,7 +200,11 @@ public class Skill extends JLabel {
 			}
 		}
 	}
-
+	/**
+	 * 캐릭터가 적과 충돌했을 때를 판단하는 메소드 입니다.
+	 *
+	 * @author 박영서
+	 */
 	// 충돌 함수
 	public boolean crash(int playerX, int playerY, int enemyX, int enemyY, int playerW, int playerH, int enemyW,
 			int enemyH) {
