@@ -276,6 +276,8 @@ public class MapleApp extends JFrame implements Initable {
 		}).start();
 
 		addMouseListener(new MouseAdapter() {
+			// 마우스 휠 버튼을 누른 횟수를 저장하는 변수
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getButton() == MouseEvent.BUTTON1) {
@@ -289,13 +291,13 @@ public class MapleApp extends JFrame implements Initable {
 				}
 
 				if (e.getButton() == MouseEvent.BUTTON2) {
-					// 마우스 휠 클릭 시 mouse 변수의 값을 전환합니다.
+					// 마우스 휠 클릭 시 wheelClickCount 값을 증가시킵니다.
+
 					mouse = !mouse;
 
 				}
-
+				;
 			}
-
 		});
 
 	};
@@ -303,18 +305,23 @@ public class MapleApp extends JFrame implements Initable {
 	// 마우스의 위치를 바탕으로 캐릭터를 움직이는 메소드
 	private void moveCharacterBasedOnMousePosition(int mouseX) {
 		// 마우스 커서가 캐릭터보다 오른쪽에 있는지 확인합니다.
-		if (mouseX > player.getX() && mouse == true) {
+		int X = mouseX - player.getX();
+		if (X > 10 && mouse == true) {
 			// 마우스 커서가 캐릭터보다 오른쪽에 있으면, 캐릭터를 오른쪽으로 움직입니다.
 			player.moveRight1();
 			player.isLeft = false;
 			player.isMove = true;
 		}
 		// 마우스 커서가 캐릭터보다 왼쪽에 있는지 확인합니다.
-		else if (mouseX < player.getX() && mouse == true) {
+		else if (X < -10 && mouse == true) {
 			// 마우스 커서가 캐릭터보다 왼쪽에 있으면, 캐릭터를 왼쪽으로 움직입니다.
 			player.moveLeft();
 			player.isRight = false;
 			player.isMove = true;
+		} else if ((X < 10 || X > -10) && mouse == true) {
+			// 마우스 커서가 캐릭터보다 왼쪽에 있으면, 캐릭터를 왼쪽으로 움직입니다.
+			player.isLeft = false;
+			player.isRight = false;
 		}
 
 		;
