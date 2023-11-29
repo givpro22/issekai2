@@ -92,6 +92,22 @@ public class MapleApp extends JFrame implements Initable {
 
 	@Override
 	public void init() {
+		// init에서 박영서 부분
+		player = new Player();
+		mushroom = new Mushroom("image/주황버섯오른쪽.gif", 555, 380, 30, "주황버섯", player);
+		stone = new Stone("image/Stone.gif", 100, 150, 30, "스톤골렘", player);
+		barlog = new Barlog("image/발록오른쪽.gif", 200, -20, 30, "주니어발록", player);
+		block = new Block("image/블록골렘오른쪽.gif", 200, 300, 30, "블록골렘", player);
+		boss = new Boss("image/자쿰.gif", 400, 20, 800, "자쿰");
+		boss.x = 9999;
+		// 박영서
+		//
+		//
+		//
+		//
+		//
+		//
+
 		c = getContentPane();
 		laBackground = new JLabel(new ImageIcon("image/background2.png"));
 
@@ -116,14 +132,6 @@ public class MapleApp extends JFrame implements Initable {
 		icMp40 = new ImageIcon("image/mpp40.png");
 		icMp50 = new ImageIcon("image/mpp50.png");
 
-		player = new Player();
-
-		mushroom = new Mushroom("image/주황버섯오른쪽.gif", 555, 380, 30, "주황버섯", player);
-		stone = new Stone("image/Stone.gif", 100, 150, 30, "스톤골렘", player);
-		barlog = new Barlog("image/발록오른쪽.gif", 200, -20, 30, "주니어발록", player);
-		block = new Block("image/블록골렘오른쪽.gif", 200, 300, 30, "블록골렘", player);
-		boss = new Boss("image/자쿰.gif", 400, 20, 800, "자쿰");
-
 		bar = new PlayerHpBar();
 		bar2 = new PlayerMpBar();
 		gamePoint = new GamePoint();
@@ -138,17 +146,7 @@ public class MapleApp extends JFrame implements Initable {
 
 		Thread enemyCol = new Thread(new col(enemy));
 		enemyCol.start();
-		boss.x = 9999;
-	}
 
-	@Override
-	public void setting() {
-		setTitle("메이플 테스트");
-		setSize(1290, 759);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setLayout(null);
-		setContentPane(laBackground);
 	}
 
 	/**
@@ -328,6 +326,17 @@ public class MapleApp extends JFrame implements Initable {
 
 	}
 
+	// 정아진?
+	@Override
+	public void setting() {
+		setTitle("메이플 테스트");
+		setSize(1290, 759);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setLayout(null);
+		setContentPane(laBackground);
+	}
+
 	// 충돌 클래스
 	class col extends Thread {
 		ArrayList<Enemy> enemy;
@@ -350,7 +359,7 @@ public class MapleApp extends JFrame implements Initable {
 						}
 						// 보스
 						if (isBossStart == true) {
-							if (deadEnemy[2] > 170) { // 설정한 점수 이상이면 보스맵 입장
+							if (deadEnemy[2] > 2000) { // 설정한 점수 이상이면 보스맵 입장
 								player.setBossStage(true);
 								isBoss = true;
 								mushroom.x = 99999;
