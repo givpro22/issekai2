@@ -82,8 +82,8 @@ public class Stone extends Enemy {
 					int characterX = player.x;
 					int characterY = player.y;
 					int distance = Math.abs(characterX - x);
-					System.out.println(distance);
-					if (distance <= 500 && characterY > 100) {
+					System.out.println(player.x);
+					if (distance <= 800 && (characterY > 163 && characterY < 203)) {
 						if (characterX > x) {
 							setIcon(new ImageIcon("image/Stone.gif"));
 							x++;
@@ -105,7 +105,7 @@ public class Stone extends Enemy {
 							if (x >= 900) {
 								moveState = 2;
 							}
-							setLocation(x, y); // ³»ºÎ¿¡ repaint() Á¸Àç
+							setLocation(x, y);
 							try {
 								Thread.sleep(speed);
 
@@ -118,7 +118,7 @@ public class Stone extends Enemy {
 							if (x <= 100) {
 								moveState = 1;
 							}
-							setLocation(x, y); // ³»ºÎ¿¡ repaint() Á¸Àç
+							setLocation(x, y);
 							try {
 								Thread.sleep(speed);
 							} catch (InterruptedException e) {

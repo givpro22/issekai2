@@ -280,7 +280,7 @@ public class MapleApp extends JFrame implements Initable {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getButton() == MouseEvent.BUTTON1) {
+				if (e.getButton() == MouseEvent.BUTTON1 && player.mp >= 10) {
 					skillShot = new Skill(player, enemy);
 					add(skillShot);
 					player.skilshot();

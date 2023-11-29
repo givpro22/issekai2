@@ -82,8 +82,8 @@ public class Block extends Enemy {
 					int characterX = player.x;
 					int characterY = player.y;
 					int distance = Math.abs(characterX - x);
-					System.out.println(distance);
-					if (distance <= 500 && characterY > 100) {
+
+					if (distance <= 800 && (characterY > 308 && characterY < 348) && x <= 500 && x >= 100) {
 						if (characterX > x) {
 							setIcon(new ImageIcon("image/블록골렘오른쪽.gif"));
 							x++;
@@ -102,7 +102,7 @@ public class Block extends Enemy {
 						if (moveState == 1) {
 							setIcon(new ImageIcon("image/블록골렘오른쪽.gif"));
 							x++;
-							if (x >= 900) {
+							if (x >= 500) {
 								moveState = 2;
 							}
 							setLocation(x, y);

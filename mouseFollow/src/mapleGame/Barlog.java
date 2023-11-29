@@ -87,8 +87,8 @@ public class Barlog extends Enemy {
 					int characterX = player.x;
 					int characterY = player.y;
 					int distance = Math.abs(characterX - x);
-					System.out.println(distance);
-					if (distance <= 500 && characterY > 150) {
+
+					if (distance <= 800 && (characterY > -20 && characterY < 80)) {
 						if (characterX > x) {
 							setIcon(new ImageIcon("image/발록오른쪽.gif"));
 							x++;
@@ -107,10 +107,10 @@ public class Barlog extends Enemy {
 						if (moveState == 1) {
 							setIcon(new ImageIcon("image/발록오른쪽.gif"));
 							x++;
-							if (x >= 900) {
+							if (x >= 550) {
 								moveState = 2;
 							}
-							setLocation(x, y); // ³»ºÎ¿¡ repaint() Á¸Àç
+							setLocation(x, y);
 							try {
 								Thread.sleep(speed);
 
@@ -123,7 +123,7 @@ public class Barlog extends Enemy {
 							if (x <= 100) {
 								moveState = 1;
 							}
-							setLocation(x, y); // ³»ºÎ¿¡ repaint() Á¸Àç
+							setLocation(x, y);
 							try {
 								Thread.sleep(speed);
 							} catch (InterruptedException e) {

@@ -64,8 +64,8 @@ public class Mushroom extends Enemy {
 					int characterX = player.x;
 					int characterY = player.y;
 					int distance = Math.abs(characterX - x);
-					System.out.println(distance);
-					if (distance <= 500 && characterY > 460) {
+
+					if (distance <= 500 && (characterY > 450 && characterY < 490)) {
 						if (characterX > x) {
 							setIcon(new ImageIcon("image/주황버섯오른쪽.gif"));
 							x++;
@@ -84,10 +84,10 @@ public class Mushroom extends Enemy {
 						if (moveState == 1) {
 							setIcon(new ImageIcon("image/주황버섯오른쪽.gif"));
 							x++;
-							if (x >= 900) {
+							if (x >= 1100) {
 								moveState = 2;
 							}
-							setLocation(x, y); // ³»ºÎ¿¡ repaint() Á¸Àç
+							setLocation(x, y);
 							try {
 								Thread.sleep(speed);
 
@@ -97,10 +97,10 @@ public class Mushroom extends Enemy {
 						} else if (moveState == 2) {
 							setIcon(new ImageIcon("image/주황버섯왼쪽.gif"));
 							x--;
-							if (x <= 100) {
+							if (x <= 5) {
 								moveState = 1;
 							}
-							setLocation(x, y); // ³»ºÎ¿¡ repaint() Á¸Àç
+							setLocation(x, y);
 							try {
 								Thread.sleep(speed);
 							} catch (InterruptedException e) {
