@@ -62,6 +62,7 @@ public class MapleApp extends JFrame implements Initable {
 	Container c;
 
 	Skill skillShot;
+	Skill skillShot2;
 
 	// HP 라벨
 	ImageIcon icHp0, icHp10, icHp20, icHp30, icHp40, icHp50, icHp60, icHp70, icHp80, icHp90, icHp100;
@@ -210,8 +211,13 @@ public class MapleApp extends JFrame implements Initable {
 					}
 				} else if (player.mp >= 10) {
 					if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
-						skillShot = new Skill(player, enemy);
+						skillShot = new Skill(player, enemy, 1);
 						add(skillShot);
+						player.skilshot();
+						System.out.println("MP : " + player.mp + " 남았습니다.");
+					} else if (e.getKeyCode() == KeyEvent.VK_SHIFT) {
+						skillShot2 = new Skill(player, enemy, 2);
+						add(skillShot2);
 						player.skilshot();
 						System.out.println("MP : " + player.mp + " 남았습니다.");
 					} else if (e.getKeyCode() == KeyEvent.VK_UP) {
