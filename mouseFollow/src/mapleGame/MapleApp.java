@@ -23,6 +23,7 @@ import javax.swing.SwingUtilities;
  * @author 정아진
  */
 public class MapleApp extends JFrame implements Initable {
+	// 클래스 내 필드 정의
 	MapleApp mapleApp = this;
 	static final String TAG = "MapleApp : ";
 	JLabel laBackground;
@@ -30,8 +31,8 @@ public class MapleApp extends JFrame implements Initable {
 	PlayerHpBar bar;
 	PlayerMpBar bar2;
 
-	public void goToBossStage() {
-	}
+	// public void goToBossStage() {
+	// }
 
 	// 점수 변수
 	static int scoreMushNum;
@@ -42,6 +43,7 @@ public class MapleApp extends JFrame implements Initable {
 
 	ArrayList<Enemy> enemy;
 
+// 게임 내 적 캐릭터 객체들
 	// 주황버섯 객체
 	Mushroom mushroom;
 	// 스톤골렘 객체
@@ -56,7 +58,7 @@ public class MapleApp extends JFrame implements Initable {
 	static boolean isBoss = false;
 	boolean isBossStart = true;
 
-	// 로그인
+	// 로그인 화면 참조
 	LoginScr loginScr;
 
 	Container c;
@@ -64,35 +66,52 @@ public class MapleApp extends JFrame implements Initable {
 	Skill skillShot;
 	Skill skillShot2;
 
+// HP와 MP 라벨 이미지 아이콘
 	// HP 라벨
 	ImageIcon icHp0, icHp10, icHp20, icHp30, icHp40, icHp50, icHp60, icHp70, icHp80, icHp90, icHp100;
 	// MP 라벨
 	ImageIcon icMp0, icMp10, icMp20, icMp30, icMp40, icMp50;
 
+/**
+     * MapleApp 기본 생성자.
+		 * @author 정아진
+     */
 	public MapleApp() {
-		init(); // new
-		setting();
-		batch();
-		listener();
+        init(); // 컴포넌트 초기화
+        setting(); // 기본 설정
+        batch(); // 화면 구성
+        listener(); // 이벤트 리스너 설정
 
-		setVisible(true); // 마지막 고정
+		setVisible(true); // 마지막 고정 (호ㅏ면표시)
 	}
 
+/**
+     * 로그인 화면을 매개변수로 받는 MapleApp 생성자.
+     * @param loginScr 로그인 화면 참조
+		 * @author 정아진
+     */
 	public MapleApp(LoginScr loginScr) {
-		init(); // new
-		setting();
-		batch();
-		listener();
+        init(); // 컴포넌트 초기화
+        setting(); // 기본 설정
+        batch(); // 화면 구성
+        listener(); // 이벤트 리스너 설정
 
 		setVisible(true); // 마지막 고정
 	}
 
+
+		/**
+     * 메인 메소드.
+     * @param args 프로그램 인자.
+		 * @author 정아진
+     */
 	public static void main(String[] args) {
 		new MapleApp();
 	}
 
 	@Override
 	public void init() {
+		// 컴포넌트 및 게임 관련 객체 초기화
 		// init에서 박영서 부분
 		player = new Player();
 		mushroom = new Mushroom("image/주황버섯오른쪽.gif", 555, 380, 30, "주황버섯", player);

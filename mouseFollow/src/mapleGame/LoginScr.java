@@ -14,8 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 /**
- * LoginScr 클래스는 로그인 화면을 구현한 클래스입니다. JFrame을 상속받아 로그인 화면 구성 요소를 설정하고, 로그인 버튼에 대한
- * 이벤트를 처리합니다.
+ * LoginScr 클래스는 로그인 화면을 구현한 클래스입니다. 
+ * JFrame을 상속받아 로그인 화면 구성 요소를 설정하고, 로그인 버튼에 대한 이벤트를 처리합니다.
  * 
  * @author 정아진
  */
@@ -27,14 +27,25 @@ public class LoginScr extends JFrame {
 	private JButton btnLogin, button;
 	private ImageIcon icon;
 	JScrollPane scrollPane;
-
+	/**
+   * 메인 메소드.
+   * @param args 프로그램 인자.
+	 * @author 정아진
+   */
 	public static void main(String[] args) {
 
 	}
 
+/**
+     * 로그인 화면 생성자.
+     * @param loading 로딩 화면 객체.
+		 * @author 정아진
+     */
+
 	public LoginScr(Loading loading) {
 		icon = new ImageIcon("image/loginBG.png");
 
+// 배경 이미지 설정을 위한 JPanel 커스텀.
 		JPanel background = new JPanel() {
 			public void paintComponent(Graphics g) {
 				g.drawImage(icon.getImage(), 0, 0, null);
@@ -66,6 +77,11 @@ public class LoginScr extends JFrame {
 		setVisible(true);
 	}
 
+
+/**
+     * 이벤트 리스너 초기화 메소드.
+		 * @author 정아진
+     */
 	private void initListener() {
 
 		button.addActionListener(new ActionListener() {
