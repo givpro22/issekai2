@@ -220,7 +220,7 @@ public class Skill extends JLabel {
 	/**
 	 * 캐릭터가 적과 충돌했을 때를 판단하는 메소드 입니다.
 	 *
-	 * @author 박영서
+	 * @author 성세현
 	 */
 	// 충돌 함수
 	public boolean crash(int playerX, int playerY, int enemyX, int enemyY, int playerW, int playerH, int enemyW,
