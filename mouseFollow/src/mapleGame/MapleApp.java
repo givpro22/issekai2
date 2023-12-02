@@ -31,9 +31,6 @@ public class MapleApp extends JFrame implements Initable {
 	PlayerHpBar bar;
 	PlayerMpBar bar2;
 
-	// public void goToBossStage() {
-	// }
-
 	// 점수 변수
 	static int scoreMushNum;
 	static int scoreStoneNum;
@@ -72,47 +69,50 @@ public class MapleApp extends JFrame implements Initable {
 	// MP 라벨
 	ImageIcon icMp0, icMp10, icMp20, icMp30, icMp40, icMp50;
 
-/**
-     * MapleApp 기본 생성자.
-		 * @author 정아진
-     */
+	/**
+	 * MapleApp 기본 생성자.
+	 * 
+	 * @author 정아진
+	 */
 	public MapleApp() {
-        init(); // 컴포넌트 초기화
-        setting(); // 기본 설정
-        batch(); // 화면 구성
-        listener(); // 이벤트 리스너 설정
-
+		init(); // 컴포넌트 초기화
+		setting(); // 기본 설정
+		batch(); // 화면 구성
+		listener(); // 이벤트 리스너 설정
 		setVisible(true); // 마지막 고정 (호ㅏ면표시)
 	}
 
-/**
-     * 로그인 화면을 매개변수로 받는 MapleApp 생성자.
-     * @param loginScr 로그인 화면 참조
-		 * @author 정아진
-     */
+	/**
+	 * 로그인 화면을 매개변수로 받는 MapleApp 생성자.
+	 * 
+	 * @param loginScr 로그인 화면 참조
+	 * @author 정아진
+	 */
 	public MapleApp(LoginScr loginScr) {
-        init(); // 컴포넌트 초기화
-        setting(); // 기본 설정
-        batch(); // 화면 구성
-        listener(); // 이벤트 리스너 설정
+		init(); // 컴포넌트 초기화
+		setting(); // 기본 설정
+		batch(); // 화면 구성
+		listener(); // 이벤트 리스너 설정
 
 		setVisible(true); // 마지막 고정
 	}
 
-
-		/**
-     * 메인 메소드.
-     * @param args 프로그램 인자.
-		 * @author 정아진
-     */
+	/**
+	 * 메인 메소드.
+	 * 
+	 * @param args 프로그램 인자.
+	 * @author 정아진
+	 */
 	public static void main(String[] args) {
 		new MapleApp();
 	}
 
+	/**
+	 * @author 성세현 이 메서드는 게임 초기 설정을 하는 메서드입니다.
+	 */
 	@Override
 	public void init() {
-		// 컴포넌트 및 게임 관련 객체 초기화
-		// init에서 박영서 부분
+		// 박영서 부분: 플레이어와 적들의 객체를 생성합니다.
 		player = new Player();
 		mushroom = new Mushroom("image/주황버섯오른쪽.gif", 555, 380, 30, "주황버섯", player);
 		stone = new Stone("image/Stone.gif", 100, 150, 30, "스톤골렘", player);
@@ -121,18 +121,11 @@ public class MapleApp extends JFrame implements Initable {
 		boss = new Boss("image/자쿰.gif", 400, 20, 800, "자쿰");
 		boss.x = 9999;
 		// 박영서
-		//
-		//
-		//
-		//
-		//
-		//
 
+		// 성세현 부분: 게임 환경을 설정합니다.
 		c = getContentPane();
 		laBackground = new JLabel(new ImageIcon("image/background2.png"));
-
 		enemy = new ArrayList<>();
-
 		icHp0 = new ImageIcon("image/hpp0.png");
 		icHp10 = new ImageIcon("image/hpp10.png");
 		icHp20 = new ImageIcon("image/hpp20.png");
@@ -144,35 +137,30 @@ public class MapleApp extends JFrame implements Initable {
 		icHp80 = new ImageIcon("image/hpp80.png");
 		icHp90 = new ImageIcon("image/hpp90.png");
 		icHp100 = new ImageIcon("image/hpp100.png");
-
 		icMp0 = new ImageIcon("image/mpp0.png");
 		icMp10 = new ImageIcon("image/mpp10.png");
 		icMp20 = new ImageIcon("image/mpp20.png");
 		icMp30 = new ImageIcon("image/mpp30.png");
 		icMp40 = new ImageIcon("image/mpp40.png");
 		icMp50 = new ImageIcon("image/mpp50.png");
-
 		bar = new PlayerHpBar();
 		bar2 = new PlayerMpBar();
 		gamePoint = new GamePoint();
-
 		enemy.add(mushroom);
 		enemy.add(stone);
 		enemy.add(barlog);
 		enemy.add(block);
 		enemy.add(boss);
-
 		player.healing();
-
 		Thread enemyCol = new Thread(new col(enemy));
 		enemyCol.start();
-
+		// 성세현
 	}
 
 	/**
 	 * 모든 게임 객체를 게임 화면에 추가하는 메소드입니다.
 	 * 
-	 * @author 박영서
+	 * @author 정아진
 	 */
 	@Override
 	public void batch() {
@@ -196,9 +184,8 @@ public class MapleApp extends JFrame implements Initable {
 	boolean mouse = false;
 
 	/**
-	 * 키보드 이벤트 리스너를 추가하는 메소드입니다. 플레이어의 움직임과 공격 동작을 키보드 이벤트에 연결합니다.
-	 * 
-	 * @author 박영서
+	 * @author 박영서 이 메서드는 키보드 이벤트와 마우스 이벤트 리스너를 추가하는 메서드입니다. 플레이어의 움직임과 공격 동작을 키보드
+	 *         이벤트와 마우스 이벤트에 연결합니다.
 	 */
 	@Override
 	public void listener() {
@@ -270,8 +257,11 @@ public class MapleApp extends JFrame implements Initable {
 				moveCharacterBasedOnMousePosition(mouseX);
 			}
 		});
-
-		// 별도의 스레드를 생성하여 주기적으로 마우스의 위치를 확인합니다.
+		/**
+		 * 별도의 스레드를 생성하여 주기적으로 마우스의 위치를 확인합니다.
+		 * 
+		 * @author 박영서
+		 */
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -299,7 +289,6 @@ public class MapleApp extends JFrame implements Initable {
 		}).start();
 
 		addMouseListener(new MouseAdapter() {
-			// 마우스 휠 버튼을 누른 횟수를 저장하는 변수
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -314,8 +303,6 @@ public class MapleApp extends JFrame implements Initable {
 				}
 
 				if (e.getButton() == MouseEvent.BUTTON2) {
-					// 마우스 휠 클릭 시 wheelClickCount 값을 증가시킵니다.
-
 					mouse = !mouse;
 
 				}
@@ -325,7 +312,10 @@ public class MapleApp extends JFrame implements Initable {
 
 	};
 
-	// 마우스의 위치를 바탕으로 캐릭터를 움직이는 메소드
+	/**
+	 * @author 박영서
+	 * @param mouseX 마우스의 x좌표를 입력 받습니다. 이 메서드는 마우스의 위치를 바탕으로 캐릭터를 움직이는 메서드입니다.
+	 */
 	private void moveCharacterBasedOnMousePosition(int mouseX) {
 		// 마우스 커서가 캐릭터보다 오른쪽에 있는지 확인합니다.
 		int X = mouseX - player.getX();
@@ -351,7 +341,7 @@ public class MapleApp extends JFrame implements Initable {
 
 	}
 
-	// 정아진?
+	// 정아진
 	@Override
 	public void setting() {
 		setTitle("메이플 테스트");
@@ -362,14 +352,23 @@ public class MapleApp extends JFrame implements Initable {
 		setContentPane(laBackground);
 	}
 
-	// 충돌 클래스
+	/**
+	 * @author 성세현 이 클래스는 게임의 충돌을 관리하는 스레드 클래스입니다.
+	 */
 	class col extends Thread {
 		ArrayList<Enemy> enemy;
 
+		/**
+		 * @author 성세현
+		 * @param enemy 적들의 정보가 담긴 ArrayList 입니다.
+		 */
 		public col(ArrayList<Enemy> enemy) {
 			this.enemy = enemy;
 		}
 
+		/**
+		 * @author 성세현 스레드를 실행하는 메서드입니다. 충돌을 감지하고, 게임의 상태를 업데이트합니다.
+		 */
 		@Override
 		public void run() {
 
@@ -455,7 +454,6 @@ public class MapleApp extends JFrame implements Initable {
 
 						gamePoint.setText("Point : " + MapleApp.deadEnemy[2]); // 점수 표시
 
-						// 플레이어
 						if (crash(player.x, player.y, enemy.get(i).x, enemy.get(i).y, player.width, player.height,
 								enemy.get(i).width, enemy.get(i).height)) {
 							System.out.println("충돌 발생!");
@@ -526,7 +524,12 @@ public class MapleApp extends JFrame implements Initable {
 		}
 	}
 
-	// 충돌 함수
+	/**
+	 * @author 성세현
+	 * 
+	 *         플레이어와 적이 충돌했는지를 판단하는 메서드입니다.
+	 * 
+	 */
 	public boolean crash(int playerX, int playerY, int enemyX, int enemyY, int playerW, int playerH, int enemyW,
 			int enemyH) {
 		boolean check = false;
@@ -538,9 +541,12 @@ public class MapleApp extends JFrame implements Initable {
 		}
 		return check;
 	}
-	// end 충돌
 
-	// 몬스터 공격 함수
+	/**
+	 * @author 성세현
+	 * 
+	 *         플레이어가 적에게 공격했는지를 판단하는 메서드입니다.
+	 */
 
 	public boolean attackCrash(int playerX, int playerY, int enemyX, int enemyY, int playerW, int playerH, int enemyW,
 			int enemyH) {
@@ -554,6 +560,15 @@ public class MapleApp extends JFrame implements Initable {
 		return check;
 	} // 몬스터 공격 함수 END
 
+	/**
+	 * @author 성세현
+	 * 
+	 *         적의 종류에 따른 점수를 계산하는 메서드입니다.
+	 * 
+	 * @param enemy 적의 이름
+	 * 
+	 * @return 적의 종류에 따른 점수를 반환합니다.
+	 */
 	public static int[] score(String enemy) {
 
 		if (enemy == "주황버섯") { // 버섯 50점

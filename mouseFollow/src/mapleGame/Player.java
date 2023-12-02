@@ -78,7 +78,7 @@ public class Player extends JLabel {
 	 * @author 박영서
 	 */
 	public void moveRangeR() { // 오른쪽으로 움직일 때 조건
-		if (floor == FloorHeight.floor1) { // 1층일 때
+		if (floor == FloorHeight.floor1 && x < 1208) { // 1층일 때
 			x++;
 			System.out.println(x);
 		} else if (floor == FloorHeight.floor2) { // 2층일 때
