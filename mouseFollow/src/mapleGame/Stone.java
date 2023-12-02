@@ -137,5 +137,4 @@ public class Stone extends Enemy {
 			}
 		}).start();
 	}
-
 }
