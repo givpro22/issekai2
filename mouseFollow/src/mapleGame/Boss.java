@@ -16,12 +16,12 @@ public class Boss extends Enemy {
 	}
 
 	/**
-	 * 주어진 파라미터들로 Boss 객체를 생성합니다.
+	 * Boss의 매개변수를 받는 생성자입니다.
 	 * 
 	 * @param string 적의 이미지 경로를 설정합니다.
-	 * @param x      적의 X좌표를 설정합니다.
-	 * @param y      적의 Y좌표를 설정합니다.
-	 * @param hp     적의 체력을 설정합니다.
+	 * @param x      적의 초기 x 좌표를 설정합니다.
+	 * @param y      적의 초기 y 좌표를 설정합니다.
+	 * @param hp     적의 초기 체력을 설정합니다.
 	 * @param name   적의 이름을 설정합니다.
 	 */
 	public Boss(String string, int x, int y, int hp, String name) {

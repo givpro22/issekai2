@@ -57,9 +57,7 @@ public class MapleApp extends JFrame implements Initable {
 
 	// 로그인 화면 참조
 	LoginScr loginScr;
-
 	Container c;
-
 	Skill skillShot;
 	Skill skillShot2;
 
@@ -547,7 +545,6 @@ public class MapleApp extends JFrame implements Initable {
 	 * 
 	 *         플레이어가 적에게 공격했는지를 판단하는 메서드입니다.
 	 */
-
 	public boolean attackCrash(int playerX, int playerY, int enemyX, int enemyY, int playerW, int playerH, int enemyW,
 			int enemyH) {
 		boolean check = false;

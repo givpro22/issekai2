@@ -18,13 +18,14 @@ public class Block extends Enemy {
 	}
 
 	/**
-	 * 주어진 파라미터들로 Block 객체를 생성합니다.
+	 * Block의 매개변수를 받는 생성자입니다.
 	 * 
-	 * @param string 적의 이미지 경로를 설정합니다.
-	 * @param x      적의 X좌표를 설정합니다.
-	 * @param y      적의 Y좌표를 설정합니다.
-	 * @param hp     적의 체력을 설정합니다.
-	 * @param name   적의 이름을 설정합니다.
+	 * @param string 적 이미지의 경로를 나타냅니다.
+	 * @param x      적의 초기 x 좌표를 나타냅니다.
+	 * @param y      적의 초기 y 좌표를 나타냅니다.
+	 * @param hp     적의 초기 체력을 나타냅니다.
+	 * @param name   적의 이름을 나타냅니다.
+	 * @param player 플레이어 객체를 나타냅니다.
 	 */
 	public Block(String string, int x, int y, int hp, String name, Player player) {
 		this.player = player;
@@ -46,7 +47,7 @@ public class Block extends Enemy {
 	}
 
 	/**
-	 * Block 객체의 움직임을 변경하는 메소드입니다. 쓰레드를 생성하여 일정 시간마다 움직임 상태와 속도를 변경합니다.
+	 * 적의 움직임을 변경하는 메소드입니다.
 	 */
 	public void moveChange() {
 		new Thread(new Runnable() {
@@ -71,7 +72,7 @@ public class Block extends Enemy {
 	}
 
 	/**
-	 * Block 객체의 움직임 방향을 결정하는 메소드입니다. 쓰레드를 생성하여 움직임 상태에 따라 객체의 위치를 변경합니다.
+	 * 적의 이동 방향을 설정하는 메소드입니다.
 	 */
 	public void moveDirection() {
 

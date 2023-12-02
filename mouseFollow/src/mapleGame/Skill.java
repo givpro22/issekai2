@@ -26,10 +26,25 @@ public class Skill extends JLabel {
 
 	int skillType;
 
+	/**
+	 * 스킬의 기본 생성자입니다. 이 생성자는 기본적인 스킬 타입 1을 생성합니다.
+	 * 
+	 * @param player 플레이어 객체를 나타냅니다.
+	 * @param enemy  적 리스트를 나타냅니다.
+	 * @author 성세현
+	 */
 	public Skill(Player player, ArrayList<Enemy> enemy) {
 		this(player, enemy, 1);
 	}
 
+	/**
+	 * 스킬의 매개변수를 받는 생성자입니다. 이 생성자는 지정된 스킬 타입을 생성합니다.
+	 * 
+	 * @param player    플레이어 객체를 나타냅니다.
+	 * @param enemy     적 리스트를 나타냅니다.
+	 * @param skillType 생성할 스킬의 타입을 지정합니다.
+	 * @author 성세현
+	 */
 	public Skill(Player player, ArrayList<Enemy> enemy, int skillType) {
 		this.enemy = enemy;
 		this.x = player.x;
@@ -37,6 +52,7 @@ public class Skill extends JLabel {
 		this.player = player;
 		this.skillType = skillType;
 
+		// 박영서 부분
 		if (skillType == 1) {
 			skillIcon = new ImageIcon("image/스킬샷.png");
 			skillIconLeft = new ImageIcon("image/스킬샷왼쪽.png");
@@ -59,7 +75,7 @@ public class Skill extends JLabel {
 			skillLeft();
 		}
 	}
-
+	// 박영서
 	// Skill 객체 생성시 자동 실행
 
 	/**
