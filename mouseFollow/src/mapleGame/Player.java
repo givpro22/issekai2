@@ -31,35 +31,48 @@ public class Player extends JLabel {
 	public boolean jumpState = false;
 	public boolean isJump = false;
 	public int floor = FloorHeight.floor1; // 470 / 2f = 328 / 3f = 183 / 4f = 38
+	
+	
 
 	/**
 	 * @author 박영서 이 메서드는 플레이어의 초기 설정을 하는 생성자 메서드입니다. 별도의 파라미터는 필요하지 않습니다.
 	 */
 	public Player() {
-		icPlayerR = new ImageIcon("image/캐릭오른쪽걷기1.png");
-		icPlayerR2 = new ImageIcon("image/캐릭오른쪽걷기2.png");
-		icPlayerR3 = new ImageIcon("image/캐릭오른쪽걷기3.png");
-		icPlayerR4 = new ImageIcon("image/캐릭오른쪽걷기4.png");
-		icPlayerAR1 = new ImageIcon("image/캐릭공격1.png");
-		icPlayerAR2 = new ImageIcon("image/캐릭공격2.png");
-		icPlayerAR3 = new ImageIcon("image/캐릭공격3.png");
-		icPlayerAL1 = new ImageIcon("image/캐릭왼쪽공격1.png");
-		icPlayerAL2 = new ImageIcon("image/캐릭왼쪽공격2.png");
-		icPlayerAL3 = new ImageIcon("image/캐릭왼쪽공격3.png");
-		icPlayerL = new ImageIcon("image/캐릭왼쪽걷기1.png");
-		icPlayerW = new ImageIcon("image/대기상태.png");
-		icPlayerWL = new ImageIcon("image/왼쪽대기상태.png");
-		icPlayerJ = new ImageIcon("image/캐릭점프.png");
-		icPlayerJL = new ImageIcon("image/캐릭왼쪽점프.png");
-		die = new ImageIcon("image/die.png");
-		skillMotion = new ImageIcon("image/캐릭공격3.png");
-		skillIconLeft = new ImageIcon("image/스킬샷왼쪽.png");
+		
+		String buttonText = LoginScr.getButtonText(); // 다른 클래스에서 buttonText 값을 가져옴
+		System.out.println("확인 된 버튼 텍스트: " + buttonText);
+		String imagePath = "image/"+buttonText+"/";
+
+		icPlayerR = new ImageIcon(imagePath + "캐릭오른쪽걷기1.png");
+        icPlayerR2 = new ImageIcon(imagePath + "캐릭오른쪽걷기2.png");
+        icPlayerR3 = new ImageIcon(imagePath + "캐릭오른쪽걷기3.png");
+        icPlayerR4 = new ImageIcon(imagePath + "캐릭오른쪽걷기4.png");
+        icPlayerAR1 = new ImageIcon(imagePath + "캐릭공격1.png");
+        icPlayerAR2 = new ImageIcon(imagePath + "캐릭공격2.png");
+        icPlayerAR3 = new ImageIcon(imagePath + "캐릭공격3.png");
+        icPlayerAL1 = new ImageIcon(imagePath + "캐릭왼쪽공격1.png");
+        icPlayerAL2 = new ImageIcon(imagePath + "캐릭왼쪽공격2.png");
+        icPlayerAL3 = new ImageIcon(imagePath + "캐릭왼쪽공격3.png");
+        icPlayerL = new ImageIcon(imagePath + "캐릭왼쪽걷기1.png");
+        icPlayerW = new ImageIcon(imagePath + "대기상태.png");
+        icPlayerWL = new ImageIcon(imagePath + "왼쪽대기상태.png");
+        icPlayerJ = new ImageIcon(imagePath + "캐릭점프.png");
+        icPlayerJL = new ImageIcon(imagePath + "캐릭왼쪽점프.png");
+        die = new ImageIcon(imagePath + "die.png");
+        skillMotion = new ImageIcon(imagePath + "캐릭공격3.png");
+        skillIconLeft = new ImageIcon(imagePath + "스킬샷왼쪽.png");
 
 		width = icPlayerW.getIconWidth();
 		height = icPlayerW.getIconHeight();
 
 		setIcon(icPlayerW);
-		setSize(80, 110);
+		if (buttonText=="female") {
+			setSize(80, 110);
+		}
+		else {
+			setSize(80, 130);
+		}
+//		setSize(80, 110);
 		setLocation(x, y);
 	}
 

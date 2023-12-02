@@ -19,7 +19,7 @@ public class Loading extends JFrame {
 
 	/**
      * 로딩 화면의 생성자.
-		 * @author 정아진
+	 * @author 정아진
      */
 	public Loading() {
 		la = new JLabel();
@@ -39,9 +39,9 @@ public class Loading extends JFrame {
 				int n = 0;
 				while (true) {
 					try {
-						Thread.sleep(500); // 0.5초 대기
+						Thread.sleep(1000); // 1초 대기
             n++;
-            if (n == 10) { // 10초 후 로그인 화면으로 전환
+            if (n == 5) { // 10초 후 로그인 화면으로 전환
 							new LoginScr(loading);
 							loading.setVisible(false);
 						}

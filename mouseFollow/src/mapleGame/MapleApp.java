@@ -60,6 +60,8 @@ public class MapleApp extends JFrame implements Initable {
 	Container c;
 	Skill skillShot;
 	Skill skillShot2;
+	
+	
 
 // HP와 MP 라벨 이미지 아이콘
 	// HP 라벨
