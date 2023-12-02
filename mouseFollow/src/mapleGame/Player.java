@@ -10,13 +10,6 @@ import javax.swing.JLabel;
  * @author 박영서
  */
 public class Player extends JLabel {
-
-	private boolean isBossStage = false;
-
-	public void setBossStage(boolean isBossStage) {
-		this.isBossStage = isBossStage;
-	}
-
 	Player player = this;
 	final static String TAG = "Player : ";
 	Mushroom mushroom;
@@ -28,21 +21,20 @@ public class Player extends JLabel {
 	int speed = 0;
 	int hp = 100;
 	int mp = 50;
-
 	int width;
 	int height;
-
 	public boolean isRight = false;
 	public boolean isLeft = false;
 	public boolean isMove = false;
 	public boolean seewhere = true;
 	public boolean isAttack = false;
-	// 태모
 	public boolean jumpState = false;
 	public boolean isJump = false;
-	// 층 계산 초기값= 1층
 	public int floor = FloorHeight.floor1; // 470 / 2f = 328 / 3f = 183 / 4f = 38
 
+	/**
+	 * @author 박영서 이 메서드는 플레이어의 초기 설정을 하는 생성자 메서드입니다. 별도의 파라미터는 필요하지 않습니다.
+	 */
 	public Player() {
 		icPlayerR = new ImageIcon("image/캐릭오른쪽걷기1.png");
 		icPlayerR2 = new ImageIcon("image/캐릭오른쪽걷기2.png");
@@ -60,7 +52,6 @@ public class Player extends JLabel {
 		icPlayerJ = new ImageIcon("image/캐릭점프.png");
 		icPlayerJL = new ImageIcon("image/캐릭왼쪽점프.png");
 		die = new ImageIcon("image/die.png");
-
 		skillMotion = new ImageIcon("image/캐릭공격3.png");
 		skillIconLeft = new ImageIcon("image/스킬샷왼쪽.png");
 
@@ -203,6 +194,16 @@ public class Player extends JLabel {
 				}
 			}
 		}).start();
+	}
+
+	private boolean isBossStage = false;
+
+	/**
+	 * @author 박영서
+	 * @param isBossStage 보스 스테이지 여부를 설정하는 불린 변수입니다. 이 메서드는 보스 스테이지 여부를 설정하는 메서드입니다.
+	 */
+	public void setBossStage(boolean isBossStage) {
+		this.isBossStage = isBossStage;
 	}
 
 	/**
@@ -570,9 +571,14 @@ public class Player extends JLabel {
 			}
 
 		}).start();
-		player.mp = player.mp - 10;
+
+		player.mp = player.mp - 10; // 성세현 추가 부분
 	}
 
+	/**
+	 * @author 성세현 이 메서드는 주기적으로 플레이어의 체력과 마력을 회복하는 메서드입니다.
+	 * 
+	 */
 	public void healing() {
 		new Thread(new Runnable() {
 
