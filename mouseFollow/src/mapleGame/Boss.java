@@ -37,7 +37,5 @@ public class Boss extends Enemy {
 		setIcon(enemyMove);
 		setSize(730, 700);
 		setLocation(x, y);
-
 	}
-
 }

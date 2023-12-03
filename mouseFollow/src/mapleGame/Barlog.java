@@ -139,5 +139,4 @@ public class Barlog extends Enemy {
 			}
 		}).start();
 	}
-
 }

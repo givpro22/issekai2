@@ -58,7 +58,5 @@ abstract class Enemy extends JLabel {
 	 * 적의 움직임 방향을 결정하는 메소드입니다.
 	 */
 	public void moveDirection() {
-
 	}
-
 }

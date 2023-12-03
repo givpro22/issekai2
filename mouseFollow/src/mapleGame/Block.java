@@ -139,5 +139,4 @@ public class Block extends Enemy {
 			}
 		}).start();
 	}
-
 }
