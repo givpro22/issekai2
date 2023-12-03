@@ -41,7 +41,7 @@ public class Loading extends JFrame {
 					try {
 						Thread.sleep(1000); // 1초 대기
             n++;
-            if (n == 10) { // 10초 후 로그인 화면으로 전환
+            if (n == 18) { // 18초 후 로그인 화면으로 전환
 							new LoginScr(loading);
 							loading.setVisible(false);
 						}

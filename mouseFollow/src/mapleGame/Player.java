@@ -8,6 +8,8 @@ import javax.swing.JLabel;
  * 설정하고, 캐릭터의 이미지를 설정합니다.
  * 
  * @author 박영서
+ * 
+ * 
  */
 public class Player extends JLabel {
 	Player player = this;
@@ -34,6 +36,8 @@ public class Player extends JLabel {
 
 	/**
 	 * @author 박영서 이 메서드는 플레이어의 초기 설정을 하는 생성자 메서드입니다. 별도의 파라미터는 필요하지 않습니다.
+	 * 
+	 * +정아진: 스킨기능 추가로 인해 이미지 경로 체계와 조금의 로직이 추가되었습니다.
 	 */
 	public Player() {
 
@@ -472,7 +476,7 @@ public class Player extends JLabel {
 	/**
 	 * 캐릭터가 공격할 때의 동작을 정의합니다.
 	 *
-	 * @author 박영서
+	 * @author 정아진
 	 */
 	public void attack() {
 		if (isAttack == false) {
@@ -524,7 +528,7 @@ public class Player extends JLabel {
 	/**
 	 * 캐릭터가 죽었을 때의 동작을 정의합니다.
 	 *
-	 * @author 박영서
+	 * @author 정아진
 	 */
 	public void dieDown() {
 		y -= 170;
@@ -548,7 +552,7 @@ public class Player extends JLabel {
 	/**
 	 * 캐릭터가 스킬을 사용할 때의 동작을 정의합니다.
 	 *
-	 * @author 박영서
+	 * @author 정아진
 	 */
 	public void skilshot() {
 
