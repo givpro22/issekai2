@@ -177,8 +177,9 @@ public class MapleApp extends JFrame implements Initable {
 	boolean canJump = true;
 
 	/**
-	 * @author 박영서 이 메서드는 키보드 이벤트와 리스너를 추가하는 메서드입니다. 플레이어의 움직임과 공격 동작을 키보드 이벤트와
-	 *         연결합니다.
+	 * @author 정아진
+	 * 이 메서드는 키보드 이벤트와 리스너를 추가하는 메서드입니다. 
+	 * 플레이어의 움직임과 공격 동작을 키보드 이벤트와 연결합니다.
 	 */
 	@Override
 	public void listener() {
