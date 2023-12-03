@@ -77,6 +77,7 @@ public class MapleApp extends JFrame implements Initable {
 		setting(); // 기본 설정
 		batch(); // 화면 구성
 		listener(); // 이벤트 리스너 설정
+		listener2(); // 이벤트 리스너 설정
 		setVisible(true); // 마지막 고정 (호ㅏ면표시)
 	}
 
@@ -91,7 +92,7 @@ public class MapleApp extends JFrame implements Initable {
 		setting(); // 기본 설정
 		batch(); // 화면 구성
 		listener(); // 이벤트 리스너 설정
-
+		listener2(); // 이벤트 리스너 설정
 		setVisible(true); // 마지막 고정
 	}
 
@@ -230,6 +231,30 @@ public class MapleApp extends JFrame implements Initable {
 				}
 			}
 
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+					player.isRight = false;
+					player.isMove = false;
+
+				} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+					player.isLeft = false;
+					player.isMove = false;
+				} else if (e.getKeyCode() == KeyEvent.VK_A) {
+					player.isAttack = false;
+				}
+			}
+		}
+
+		);
+	};
+
+	/**
+	 * @author 박영서 이 메서드는 마우스 이벤트 리스너를 추가하는 메서드입니다. 플레이어의 움직임과 공격 동작을 마우스 이벤트에
+	 *         연결합니다.
+	 */
+	public void listener2() {
+		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
