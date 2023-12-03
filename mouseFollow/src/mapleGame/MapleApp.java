@@ -60,8 +60,6 @@ public class MapleApp extends JFrame implements Initable {
 	Container c;
 	Skill skillShot;
 	Skill skillShot2;
-	
-	
 
 // HP와 MP 라벨 이미지 아이콘
 	// HP 라벨
@@ -292,6 +290,7 @@ public class MapleApp extends JFrame implements Initable {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
 				if (e.getButton() == MouseEvent.BUTTON1 && player.mp >= 10) {
 					skillShot = new Skill(player, enemy);
 					add(skillShot);
@@ -304,7 +303,12 @@ public class MapleApp extends JFrame implements Initable {
 
 				if (e.getButton() == MouseEvent.BUTTON2) {
 					mouse = !mouse;
+					if (mouse) {
+						JOptionPane.showMessageDialog(null, "마우스 조작모드", "알림", JOptionPane.INFORMATION_MESSAGE);
 
+					} else {
+						JOptionPane.showMessageDialog(null, "키보드 조작모드", "알림", JOptionPane.INFORMATION_MESSAGE);
+					}
 				}
 				;
 			}
@@ -318,6 +322,7 @@ public class MapleApp extends JFrame implements Initable {
 	 */
 	private void moveCharacterBasedOnMousePosition(int mouseX) {
 		// 마우스 커서가 캐릭터보다 오른쪽에 있는지 확인합니다.
+
 		int X = mouseX - player.getX();
 		if (X > 10 && mouse == true) {
 			// 마우스 커서가 캐릭터보다 오른쪽에 있으면, 캐릭터를 오른쪽으로 움직입니다.
@@ -332,7 +337,6 @@ public class MapleApp extends JFrame implements Initable {
 			player.isRight = false;
 			player.isMove = true;
 		} else if ((X < 10 || X > -10) && mouse == true) {
-			// 마우스 커서가 캐릭터보다 왼쪽에 있으면, 캐릭터를 왼쪽으로 움직입니다.
 			player.isLeft = false;
 			player.isRight = false;
 		}
