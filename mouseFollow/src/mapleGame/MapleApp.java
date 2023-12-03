@@ -174,17 +174,11 @@ public class MapleApp extends JFrame implements Initable {
 
 	}
 
-	/**
-	 * 플레이어가 점프할 수 있는지에 대한 상태를 나타내는 변수입니다.
-	 * 
-	 * @author 박영서
-	 */
 	boolean canJump = true;
-	boolean mouse = false;
 
 	/**
-	 * @author 박영서 이 메서드는 키보드 이벤트와 마우스 이벤트 리스너를 추가하는 메서드입니다. 플레이어의 움직임과 공격 동작을 키보드
-	 *         이벤트와 마우스 이벤트에 연결합니다.
+	 * @author 박영서 이 메서드는 키보드 이벤트와 리스너를 추가하는 메서드입니다. 플레이어의 움직임과 공격 동작을 키보드 이벤트와
+	 *         연결합니다.
 	 */
 	@Override
 	public void listener() {
@@ -230,24 +224,12 @@ public class MapleApp extends JFrame implements Initable {
 					}
 				}
 			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-					player.isRight = false;
-					player.isMove = false;
-
-				} else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-					player.isLeft = false;
-					player.isMove = false;
-				} else if (e.getKeyCode() == KeyEvent.VK_A) {
-					player.isAttack = false;
-				}
-			}
 		}
 
 		);
 	};
+
+	boolean mouse = false;
 
 	/**
 	 * @author 박영서 이 메서드는 마우스 이벤트 리스너를 추가하는 메서드입니다. 플레이어의 움직임과 공격 동작을 마우스 이벤트에
