@@ -298,7 +298,22 @@ public class MapleApp extends JFrame implements Initable {
 				}
 
 				else if (e.getButton() == MouseEvent.BUTTON3) {
-					player.moveJump();
+					if (canJump) {
+						player.moveJump();
+						canJump = false;
+
+						new Thread(new Runnable() {
+							@Override
+							public void run() {
+								try {
+									Thread.sleep(400);
+									canJump = true;
+								} catch (InterruptedException ex) {
+									ex.printStackTrace();
+								}
+							}
+						}).start();
+					}
 				}
 
 				if (e.getButton() == MouseEvent.BUTTON2) {
