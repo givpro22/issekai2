@@ -156,6 +156,17 @@ public class MapleApp extends JFrame implements Initable {
 		// 성세현
 	}
 
+	// 정아진
+	@Override
+	public void setting() {
+		setTitle("메이플 테스트");
+		setSize(1290, 759);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setLayout(null);
+		setContentPane(laBackground);
+	}
+
 	/**
 	 * 모든 게임 객체를 게임 화면에 추가하는 메소드입니다.
 	 * 
@@ -177,9 +188,8 @@ public class MapleApp extends JFrame implements Initable {
 	boolean canJump = true;
 
 	/**
-	 * @author 정아진
-	 * 이 메서드는 키보드 이벤트와 리스너를 추가하는 메서드입니다. 
-	 * 플레이어의 움직임과 공격 동작을 키보드 이벤트와 연결합니다.
+	 * @author 정아진 이 메서드는 키보드 이벤트와 리스너를 추가하는 메서드입니다. 플레이어의 움직임과 공격 동작을 키보드 이벤트와
+	 *         연결합니다.
 	 */
 	@Override
 	public void listener() {
@@ -314,7 +324,7 @@ public class MapleApp extends JFrame implements Initable {
 							@Override
 							public void run() {
 								try {
-									Thread.sleep(400);
+									Thread.sleep(300);
 									canJump = true;
 								} catch (InterruptedException ex) {
 									ex.printStackTrace();
@@ -368,17 +378,6 @@ public class MapleApp extends JFrame implements Initable {
 
 	}
 
-	// 정아진
-	@Override
-	public void setting() {
-		setTitle("메이플 테스트");
-		setSize(1290, 759);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setLayout(null);
-		setContentPane(laBackground);
-	}
-
 	/**
 	 * @author 성세현 이 클래스는 게임의 충돌을 관리하는 스레드 클래스입니다.
 	 */
@@ -410,7 +409,7 @@ public class MapleApp extends JFrame implements Initable {
 						}
 						// 보스
 						if (isBossStart == true) {
-							if (deadEnemy[2] > 2000) { // 설정한 점수 이상이면 보스맵 입장
+							if (deadEnemy[2] > 1000) { // 설정한 점수 이상이면 보스맵 입장
 								player.setBossStage(true);
 								isBoss = true;
 								mushroom.x = 99999;
@@ -492,7 +491,7 @@ public class MapleApp extends JFrame implements Initable {
 								player.dieDown();
 								int result = JOptionPane.showConfirmDialog(null,
 										"죽었네... 점수는 " + MapleApp.deadEnemy[2] + "점 입니다.", "안내메세지",
-										JOptionPane.OK_OPTION);
+										JOptionPane.CLOSED_OPTION);
 								if (result == JOptionPane.OK_OPTION) {
 									System.exit(0);
 								}
